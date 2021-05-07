@@ -1,23 +1,53 @@
 <%= form_with model:prototype, class: 'form', local: true do |f| %>
 <%# <%= form_with url: prototypes_path, class: 'form', local: true do |f| %> 
   <div class="field">
-    <%= f.label :title, "プロトタイプの名称" %><br />
-    <%= f.text_field :title %>
+    <%= f.label :title, "投稿日" %><br />
+    <%= f.date_field :date %>
   </div>
   <div class="field">
-    <%= f.label :catch_copy, "キャッチコピー" %><br />
-    <%= f.text_area :catch_copy, class: :form__text %>
+    <%= f.label :catch_copy, "今月のテーマ" %><br />
+    <%= f.text_area :thema, class: :form__text_1 %>
+  </div>
+
+  <div class="koumoku">
+    <%= "【本日の行動計画】" %><br />
+  </div>
+
+
+  <div class="field">
+    <%= f.label :concept, "本日の重点課題と徹底する取り組み" %><br />
+    <%= f.text_area :text1, class: :form__text %>
   </div>
 
   <div class="field">
-    <%= f.label :concept, "コンセプト" %><br />
-    <%= f.text_area :concept, class: :form__text %>
+    <%= f.label :concept, "チーム全体の理念浸透➡成長・成果に繋げる取り組み" %><br />
+    <%= f.text_area :text2, class: :form__text %>
   </div>
 
   <div class="field">
-    <%= f.label :image, "プロトタイプの画像" %><br />
-    <%= f.file_field :image %>
+    <%= f.label :concept, "メンバー一人一人の成長に向けた取り組み" %><br />
+    <%= f.text_area :text3, class: :form__text %>
   </div>
+
+  <div class="koumoku">
+    <%= "【成果報告】" %><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :concept, "本日チームが成長した点　チームの状況" %><br />
+    <%= f.text_area :text4, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :concept, "リーダーとしての取り組み振り返り（成果・成長に貢献できたか？）" %><br />
+    <%= f.text_area :text5, class: :form__text %>
+  </div>
+
+  <%# <div class="field">
+    <%= f.label :image, "自分の画像" %>
+    <%# <br /> %>
+    <%# <%= f.file_field :image %>
+  <%# </div> %> 
 
   <div class="actions">
     <%= f.submit "保存する", class: :form__btn  %>

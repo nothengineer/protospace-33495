@@ -3,7 +3,7 @@ class PrototypesController < ApplicationController
   # only ログインしてないと入れないページを指定
 
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.all.order(id: "DESC")
   end
   
 
@@ -48,18 +48,9 @@ class PrototypesController < ApplicationController
     redirect_to root_path
   end
 
-  # def update
-  #   @prototype = Prototype.new(prototype_params)
-  #   if  @prototype.update
-  #       redirect_to edit_prototype_path
-  #   else
-  #     render :edit
-  #   end
-  # end
-
   private
 
   def prototype_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:date, :thema, :text1,:text2,:text3,:text4,:text5).merge(user_id: current_user.id)
   end
 end
