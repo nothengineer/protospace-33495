@@ -1,0 +1,238 @@
+-- MySQL dump 10.13  Distrib 5.6.50, for osx10.15 (x86_64)
+--
+-- Host: localhost    Database: protospace_33495_development
+-- ------------------------------------------------------
+-- Server version	5.6.50
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `active_storage_attachments`
+--
+
+DROP TABLE IF EXISTS `active_storage_attachments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `active_storage_attachments` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `record_type` varchar(255) NOT NULL,
+  `record_id` bigint(20) NOT NULL,
+  `blob_id` bigint(20) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_active_storage_attachments_uniqueness` (`record_type`,`record_id`,`name`,`blob_id`),
+  KEY `index_active_storage_attachments_on_blob_id` (`blob_id`),
+  CONSTRAINT `fk_rails_c3b3935057` FOREIGN KEY (`blob_id`) REFERENCES `active_storage_blobs` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `active_storage_attachments`
+--
+
+LOCK TABLES `active_storage_attachments` WRITE;
+/*!40000 ALTER TABLE `active_storage_attachments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `active_storage_attachments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `active_storage_blobs`
+--
+
+DROP TABLE IF EXISTS `active_storage_blobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `active_storage_blobs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `key` varchar(255) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `content_type` varchar(255) DEFAULT NULL,
+  `metadata` text,
+  `byte_size` bigint(20) NOT NULL,
+  `checksum` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_active_storage_blobs_on_key` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `active_storage_blobs`
+--
+
+LOCK TABLES `active_storage_blobs` WRITE;
+/*!40000 ALTER TABLE `active_storage_blobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `active_storage_blobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ar_internal_metadata`
+--
+
+DROP TABLE IF EXISTS `ar_internal_metadata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ar_internal_metadata` (
+  `key` varchar(255) NOT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ar_internal_metadata`
+--
+
+LOCK TABLES `ar_internal_metadata` WRITE;
+/*!40000 ALTER TABLE `ar_internal_metadata` DISABLE KEYS */;
+INSERT INTO `ar_internal_metadata` VALUES ('environment','development','2021-05-04 14:39:08.262090','2021-05-04 14:39:08.262090');
+/*!40000 ALTER TABLE `ar_internal_metadata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `text` text NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `prototype_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_comments_on_user_id` (`user_id`),
+  KEY `index_comments_on_prototype_id` (`prototype_id`),
+  CONSTRAINT `fk_rails_03de2dc08c` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `fk_rails_5a7b40847a` FOREIGN KEY (`prototype_id`) REFERENCES `prototypes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comments`
+--
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES (2,'テスト',1,1,'2021-05-05 09:56:46.285845','2021-05-05 09:56:46.285845');
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prototypes`
+--
+
+DROP TABLE IF EXISTS `prototypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prototypes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `thema` text NOT NULL,
+  `text1` text NOT NULL,
+  `text2` text NOT NULL,
+  `text3` text NOT NULL,
+  `text4` text NOT NULL,
+  `text5` text NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_prototypes_on_user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prototypes`
+--
+
+LOCK TABLES `prototypes` WRITE;
+/*!40000 ALTER TABLE `prototypes` DISABLE KEYS */;
+INSERT INTO `prototypes` VALUES (1,'2021-05-01','会社・メンバーのために何ができるか','本日から正式入社ということで、土曜日ではあるが作業する。\r\n今月からYouTubeの企画から投稿まで任せていただけるということで、責任を感じながら今月の企画についてセミナーで得た知識を生かし熟考し提案する。','3日のMT時に、自ら提案したSlackの使い方（トレロ連携も含めて）に関してプレゼンするためにまとめる。\r\nこれが浸透すれば、会社全体の業務改善につながると感じる。','なおくん・・・土日関係なく、作業場に来て何かしらタスクをこなしている。社長の理念や想いが引き継がれている証拠。\r\n','土曜日なので、私となおくんのみの作業だったが、「SPIA cafe」が取材されたこと・それがYouTubeにアップされていたことを知り、社長目線でコメントすることを提案し、なおくんと一緒に文章を考えることで、いいコメントをすることができた。\r\nさらに、サイボウズに変わるGoogleカレンダーの提案も考えていたため、それも話した結果、経費がかからずに管理できたらいいという意見だったので、それについてもプレゼンする予定。\r\n全体的には、土曜日であるにもかかわらず、だらけることなく作業に取り組んでいた。','直接成長ではないかもしれないが、効率化を図るためのプレゼンのまとめやYouTubeのコメントなど、会社としてプラスになることをメインに取り組めていたので、今日だけで終わらず、今月のテーマに掲げたように常に意識し、自分自身も成長するよう心がける。',1,'2021-05-05 09:52:24.958313','2021-05-05 09:52:24.958313'),(2,'2021-05-02','会社・メンバーのために何ができるか','本日は、日曜日で休日ではあるが、午後から作業場にいく。\r\n社長に本日までに5日撮影分のYouTubeの企画を頼まれていたが、それは昨日のうちに考案した。\r\nそれに関して自分なりにもう少し深ぼって考えてみる。\r\nまた、YouTube投稿日なので、早めにサムネイルと動画をもらい事前予約する。','昨日同様、Slackの使い方についてのプレゼンをまとめる。\r\nSlackの使い方について事前に動画を作り、みんなに共有した（社長に言われてやったことなので、これに関しては自ら気づいてやるべきだった。）が、それについての質問を明日聞くので、その辺の回答に関してもまとめておく。','今日も休日だが、なおくん・めいちゃん・社長が作業場に来ていた。\r\n土日も作業場に来て、みんなが仕事するようになりたいとは思わないが、それぐらいの意識でやってもらいたいと感じる。\r\n普段から、仕事に対する意識の部分を発信し続けて、言わずとも伝わるように努力していきたい。','まず、日曜日に関わらず作業している人がいるのが素晴らしいと感じた。\r\n個人事業主という雇用形態に堕落してもおかしくない中、こうして積極的に社長自ら仕事するのは自分としても居心地がいい。','今日に関しては、自分の作業も少なかったため、個人的な勉強に時間をさいた。\r\n入社して間もないので、積極的にメンバーとコミュニケーションを図ろうとしていたのは自分としていい点だと感じる。',1,'2021-05-05 10:29:05.076418','2021-05-05 10:29:05.076418'),(3,'2021-05-03','会社・メンバーのために何ができるか','本日は、全体MTの日なので朝礼時に『Slack』についてプレゼンし、質問を聞き、Googleカレンダーに関しても活用方法を提案。\r\n5月からの本格的な動きに関して把握する。\r\n','朝礼を長めに取り、その後今月の動きに関して主要メンバーでMTした。\r\nりゅうとくん・・・個人アカウント運用と0円セミナー担当\r\nなおくん・・・個人アカウント運用と商材の営業\r\nじゅんきくん・・・全体を通したサポート関係\r\n自分・・・YouTube関連統括\r\n\r\n上記の通り、それぞれ役割がしっかり分担され、それに向けて自分が何ができるのか明確になった。\r\nこれに関しても社長提案だったので、ここに関しても今後は自分も提案できるようになっていきたい。','りゅうとくん・・・YouTubeからLINE＠に繋げる自動メッセージについて話し合う。（0円セミナーに配信するコンテンツとの被り等も考慮し、深ぼる必要がある）\r\nなおくん・・・基本的には、個人アカウント運用と商材の営業だが、個人アカウントからとYouTubeからLINE＠に流れ、その中ですでに濃い見込み客に関しては、積極的に営業することで売り上げにつながる。\r\nじゅんきくん・・・基本的には全般のサポートだが、主にYouTubeのテロップ入れや撮影関係、Instagramの『大阪　美容師』アカウントの投稿編集。今後は動画編集もできるようになれば、外注として経費を削減できそう。その辺、現状どのくらいできるのかを確認しつつ提案していく。','副社長以外には、Slack・Trello・Googleカレンダーに関して説明し、使えるようになっていただいた。\r\nこれで会社としても効率が上がり、業務改善につながればいいなと感じる。','自分がプレゼンしたツール関係が会社として6日から採用することになった。\r\nまだまだプレゼン力がない自分の提案もメンバーみんな快諾してくれた。\r\nこれからも、会社・メンバーにプラスになるようなものを提供し続けたい。',1,'2021-05-05 10:44:30.306137','2021-05-05 10:44:30.306137'),(4,'2021-05-04','副社長結婚式のため完全オフ','なし','なし','なし','なし','なし',1,'2021-05-05 10:46:53.155720','2021-05-05 10:46:53.155720'),(5,'2021-05-05','会社・メンバーのために何ができるか','12時からYouTubeの撮影があるので、早めに作業場にいき、過去提案した題目がどうなのか最終確認する。','最終確認したものを本日の撮影レジュメとして、『クリエイティブ』グループに共有する。\r\n社長が話しやすいように、直接どういった流れで話すのかを確認する。','りなさん・・・作業日でもないのに、9時半頃には作業場に来てタスクをこなしていた。自分が知っている役立ちそうな知識を教える。\r\nりゅうとくん・・・自分では不明確だった「競合他社との比較」の動画に関して、話し合う。\r\nたいしんくん・・・サムネイル・撮影の画角・具体的な編集まで、対応可能かも含めて提案する。','りなさんには、Google Chromeの拡張機能で業務で役立ちそうな機能を伝えた。\r\nりゅうとくんに関しては、率先して企画について相談してくれた。\r\n社長に関しても、自分が作ったレジュメについて必要・不必要とすぐに判断していただいた。','次からは、他のメンバーが悩むような企画はなるべくせず、今の会社の状況を把握しその上で何事も提案していきたい。',1,'2021-05-05 14:11:53.060065','2021-05-05 14:11:53.060065'),(6,'2021-05-06','会社・メンバーのために何ができるか','本日は、個人写真撮り次第HP作成を再開する。（構成的に現状でいいのかどうかを再考する）\r\n18時からYouTubeの個人相談セミナーを受講し、今のチャンネル運用に生かす。','本日から、正式にメンバー全員がSlack・Trello・Googleカレンダーのツールを使い始めた。\r\nこれで、全員の作業効率につながればいいなと感じる。','なおくん・・・今日も朝早くから作業場に来ていて感心した。本日やるタスクの整理をメインとしているみたいなので自分きっかけで何か朝有効なものを提供できるといいなと感じる。\r\nじゅんきくん・・・画像素材が欲しいと伝えたところ、適切な素材を提供してくれた。また、りゅうとくんと話している時、割と仕事に対しても生き生きしているので、りゅうとくんとの会話を汲み取り自分と話ししている時も生き生きして欲しい。','本日は、個人写真の撮影がなかったので、HPの個人部分に関しては、更新なし。\r\nチームとしては、なおくんのダメなとこを具体的にどうすれば良いのかを、仕事のカテゴリーは違うが社長（クライアント様に提出するもの関連）も副社長（請求書関連）も指摘していて、見習う部分があった。\r\nりゅうとくんの仕事依頼に対して、じゅんきくんが作業していたが、密なコミュニケーションをとって作業していて、この会社のメリットをうまく使っているなと感じた。\r\nりなさんに関しては、打ち合わせで抜ける部分があったが、しっかりと自分のタスクをこなしていた。\r\nりなさんが打ち合わせから帰ってきたときに、じゅんきくんが『何か勉強になった？』と質問していて、そういう質問はお互いどちらもプラスになることだなと改めて思った。\r\n','18時のセミナーを通して、学ぶ部分がたくさんあった。\r\n今のチャンネルのダメなところが見えたので、早速次回からそれを反映するために企画から再考する必要がある。\r\n',1,'2021-05-06 23:40:15.094862','2021-05-06 23:40:15.094862'),(7,'2021-05-07','会社・メンバーのために何ができるか','本日は、社長とYouTubeやECサイト・HPに関しての打ち合わせがあるので、そこで具体的に今後の動きを含めて定めたい。\r\n副社長とLPに関しての打ち合わせもあるので、まだ内容は聞いていないが会社のためになることであれば積極的に取り組んでいきたい。','朝活メンバーが、社長・じゅんきくん・めいちゃん・なおくん・自分と今日はわりと多い。\r\nこういう高い意識で仕事ができるのはすごくいいこと。自ら率先してそういう行動はしていきたい。\r\n','朝活メンバー\r\n社長・じゅんきくん・めいちゃん・なおくん\r\nMT日でもないのに7時半くらいから実施していた。\r\n\r\n社長を筆頭に、アチーブメント関連や読書など意識を変える部分に特化して行っていたのがいいなと感じた。','HP・LP・ECサイト・YouTubeに関して、自分に相談や打ち合わせをしてくれてるのが、私もちゃんとチームとして認められ働けているんだなという実感がありすごく嬉しかった。\r\nただの作業日だったがみんな集中して取り組めていたと感じた。','私個人としては、今日で今後身につけていかなくてはならないものが具体的に見えてきてさらにやりがいも感じる。\r\n全てメンバーや会社のためになることなので、早急に身につけたい。',1,'2021-05-06 23:45:19.016348','2021-05-08 09:14:06.183259'),(8,'2021-05-08','会社・メンバーのために何ができるか','本日は体調が良くないので、ぼちぼちリサーチする程度で終わる。','1','1','1','1',1,'2021-05-08 09:15:12.363178','2021-05-08 09:15:12.363178'),(9,'2021-05-09','会社・メンバーのために何ができるか','HP・LPのプレゼン資料を作る\r\n料金体制について社長と打ち合わせ。','営業する側が使いやすいように、営業される側がわかりやすいように、メルカリのプレゼン資料を参考に作成する。','なおくん・・・朝からきているので、HP等に関して話する\r\nじゅんきくん・・・今の動画のクオリティーに関して、現時点で編集できるのか聞く。','じゅんきくんに関して、おそらく編集できるという回答だったが、それをやってしまうと他の仕事ができなくなるという回答だった。\r\nおそらく、自分のタスク管理・優先順位の付け方がまだはっきりしていないと感じるので、その辺もうまくコミュニケーションをとって教えてあげたい。','メルカリの資料を参考に、なんとかプレゼン資料を作成することができた。\r\n料金体制もしっかり打ち合わせできたので、良かった。',1,'2021-05-09 15:21:42.570453','2021-05-09 15:21:42.570453'),(10,'2021-05-10','会社・メンバーのために何ができるか','本日から朝に独学でプログラミング学習を始めた。今後会社のシステムは全て賄えるようにしたい。\r\n18時からSEの人とあって色々教えてもらうので、自分が今何ができて何ができないのか具体的に理解する。','本日は、なんばhatchにて全員の写真を撮影する。この写真がHP等に使われていく。\r\nこれを機にチーム一丸となって取り組んでいけたらなと感じる。\r\n\r\nまた、それぞれ能力開発の時間をとっていて、積極的に自分を高めようとしている。','社長、じゅんきくん・・・朝活をの予定が入っていて、素晴らしいと感じる。これがじゅんきくん発信ならなお良い。\r\nなおくん・・・朝活がデフォルトなので、自分も見習いたい。','1','1',1,'2021-05-09 23:15:29.380568','2021-05-09 23:15:29.380568'),(11,'2021-05-11','あ','い','う','え','お','か',1,'2021-05-10 01:43:16.083928','2021-05-10 01:43:16.083928');
+/*!40000 ALTER TABLE `prototypes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_migrations`
+--
+
+DROP TABLE IF EXISTS `schema_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_migrations` (
+  `version` varchar(255) NOT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `schema_migrations`
+--
+
+LOCK TABLES `schema_migrations` WRITE;
+/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+INSERT INTO `schema_migrations` VALUES ('20210105151917'),('20210107065142'),('20210107095728'),('20210110080529');
+/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `encrypted_password` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL,
+  `profile` text NOT NULL,
+  `occupation` text NOT NULL,
+  `position` text NOT NULL,
+  `reset_password_token` varchar(255) DEFAULT NULL,
+  `reset_password_sent_at` datetime DEFAULT NULL,
+  `remember_created_at` datetime DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_users_on_email` (`email`),
+  UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'kiwami.group.yuya@gmail.com','$2a$12$fgjduE6h5qZyq5ztIUIPLum0slpCbkckE6yUs/cgCrs7Q9FUEyq8O','裕也','5月1日正式入社','NewspaceCreation','YouTubeプロモーター・SE',NULL,NULL,NULL,'2021-05-04 14:41:13.986998','2021-05-04 14:41:13.986998');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-05-18 17:55:31

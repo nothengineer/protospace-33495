@@ -1,9 +1,7 @@
 <div class="card">
   <%# <%= link_to image_tag(prototype.image,class: :card__img),"/prototypes/#{prototype.id}" %> 
   <div class="card__body">
-    <% if prototype.date != nil %>
     <%=  link_to "#{prototype.date}", prototype_path(prototype.id), class: :card__title%>
-  <% end %>
     <p class="card__summary">
       <%= "#{prototype.thema}" %>
     </p>
