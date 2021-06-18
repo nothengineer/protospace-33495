@@ -3,7 +3,7 @@ class PrototypesController < ApplicationController
   # only ログインしてないと入れないページを指定
 
   def index
-    @prototypes = Prototype.all.order(id: "DESC")
+      @prototypes = Prototype.all.order(id: "DESC")
   end
   
 
@@ -21,9 +21,14 @@ class PrototypesController < ApplicationController
   end  
 
   def show
+    #5人のメンバーはそれぞれの投稿は見れない。投稿しない社長・副社長に関しては5人のメンバー全員の投稿を見れる。
     @prototype = Prototype.find(params[:id])
-    @comment = Comment.new
-    @comments = @prototype.comments.includes(:user)
+    if current_user.id == @prototype.user.id || current_user.position == '社長' ||  current_user.position == '代表取締役副社長'
+      @comment = Comment.new
+      @comments = @prototype.comments.includes(:user)
+    else
+      redirect_to user_path(params[:user_id])
+    end
   end
 
   def edit

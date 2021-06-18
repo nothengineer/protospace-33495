@@ -5,4 +5,8 @@ class UsersController < ApplicationController
     @prototype = @user.prototypes
   end
 
+  def index
+    @users = User.all
+  end
+
 end

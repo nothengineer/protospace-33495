@@ -5,8 +5,8 @@
     <%= f.date_field :date %>
   </div>
   <div class="field">
-    <%= f.label :catch_copy, "今月のテーマ" %><br />
-    <%= f.text_area :thema, class: :form__text_1 %>
+    <%= f.label :catch_copy, "今月の目標と目的" %><br />
+    <%= f.text_area :thema,:placeholder => "（例）それぞれ定めた今月の目標をここに毎回入力する。", class: :form__text_1 %>
   </div>
 
   <div class="koumoku">
@@ -15,17 +15,27 @@
 
   <div class="field">
     <%= f.label :concept, "本日の重点課題と徹底する取り組み" %><br />
-    <%= f.text_area :text1, class: :form__text %>
+    <%= f.text_area :text1, :placeholder => "（例）本日は、スピアカフェのPVの撮影が終わったのでその動画編集をメインに、nutsのフィード投稿の編集を3投稿分実施。", class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :concept, "本日の徹底する取り組みの目的" %><br />
+    <%= f.text_area :text2, :placeholder => "（例）動画編集：YouTubeを検索しチャンネルに訪問してくれた方へのCM動画(自動再生される動画)として投稿し、
+    より新規顧客獲得・オンラインサロン誘導に貢献するため。
+    フィード投稿編集：なおさんに指示された内容を反映させながら、提案・修正案があればそれも反映させつつ、⚪︎月⚪︎日分の投稿分が必要なため実施する。", class: :form__text %>
   </div>
 
   <div class="field">
     <%= f.label :concept, "チーム全体の理念浸透➡成長・成果に繋げる取り組み" %><br />
-    <%= f.text_area :text2, class: :form__text %>
+    <%= f.text_area :text2,:placeholder => "（例）朝のMTでメンバーそれぞれの成功に対しての考えや意識の面が明確になり、
+    メンバーそれぞれが、自分のタスクに関してどういう思いで向かい合ってるのかを考え仕事しているのが伝わっているので、
+    それに対して自分はどうバックアップできるのか考え行動する。",  class: :form__text %>
   </div>
 
   <div class="field">
-    <%= f.label :concept, "メンバー一人一人の成長に向けた取り組み" %><br />
-    <%= f.text_area :text3, class: :form__text %>
+    <%= f.label :concept, "本日の行動指針に沿った取り組み" %><br />
+    <%= f.text_area :text3, :placeholder => "（例）特に成長に関して意識して業務に当たる。
+    朝早くにnutsに来て、業務時間ではできない読書をした。業務時間では、メンバーの業務に関して少しでもサポートできる部分はできるようにする。", class: :form__text %>
   </div>
 
   <div class="koumoku">
@@ -34,12 +44,13 @@
 
   <div class="field">
     <%= f.label :concept, "本日チームが成長した点　チームの状況" %><br />
-    <%= f.text_area :text4, class: :form__text %>
+    <%= f.text_area :text4, :placeholder => "（例）特に〇〇くんが、自分の仕事のタスクを考えた上で他メンバーのタスクを把握してサポートしていた。
+    チーム全体としては、他メンバーの業務を理解しがながら私語をなるべく謹んでそれぞれ仕事に当たっていた。", class: :form__text %>
   </div>
 
   <div class="field">
-    <%= f.label :concept, "リーダーとしての取り組み振り返り（成果・成長に貢献できたか？）" %><br />
-    <%= f.text_area :text5, class: :form__text %>
+    <%= f.label :concept, "自分自身の取り組み振り返り" %><br />
+    <%= f.text_area :text5, :placeholder => "（例）本日は、動画編集と画像編集がメインだったが、効率化を図った上で早い時間で完成させ、他メンバーのタスクを協力することができた。", class: :form__text %>
   </div>
 
   <%# <div class="field">

@@ -94,7 +94,7 @@ a {
 
 .form__text {
   width: 50%;
-  height: 50px;
+  height: 75px;
 }
 
 .form__text_1{
@@ -129,7 +129,27 @@ a {
 }
 
 /* メイン */
+.main_index {
+  justify-content: space-around;
+}
 
+.main_index_name {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: large;
+  font-weight: bolder;
+  padding-top: 50px;
+  padding-bottom: 80vh;
+}
+
+.name-link:hover {
+  color: #ff0000;
+    text-decoration: none;
+}
+
+.main_index_position {
+  font-weight: 100;
+}
 .greeting{
   margin-bottom: 20px;
 }
