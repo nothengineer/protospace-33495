@@ -129,6 +129,19 @@ a {
 }
 
 /* メイン */
+.user-name-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+    text-align: center;
+}
+
+.list {
+  width: 33%;
+  margin-bottom: 50px;
+}
+
+
 .main_index {
   justify-content: space-around;
 }
@@ -311,6 +324,8 @@ width: calc((100%) / 5);
 .footer {
   background-color: #999;
   padding: 10px 0;
+  position: absolute;
+  width: 100vw;
 }
 .copyright {
   text-align: center;

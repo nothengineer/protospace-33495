@@ -1,10 +1,32 @@
-<div class="main_index">
-    <div class="main_index_name">
-        <% @users.each do |user| %>
+    <% if user_signed_in? %>
+      <div class="greeting">
+        <%="こんにちは、"%>
+        <%= link_to "#{current_user.name}さん", "/users/#{current_user.id}", class: :greeting__link%>
+      </div>
+    <% end %>
+<div class="user-name-list">
+  <% @users.each do |user| %>
+    <% if user.name == '福山 龍斗' %>
+      <div class="color-red list">
           <%= link_to("#{user.name}", "/users/#{user.id}", {class: "name-link"}) %>
-        <% end %>
-    </div>
-</div>
-
-
+      </div>
+    <% elsif user.name == '山本 直' %>
+      <div class="color-blue list">
+          <%= link_to("#{user.name}", "/users/#{user.id}", {class: "name-link"}) %>
+      </div>
+    <% elsif user.name == '堀田 惇貴' %>
+      <div class="color-yellow list">
+          <%= link_to("#{user.name}", "/users/#{user.id}", {class: "name-link"}) %>
+      </div>
+    <% elsif user.name == '田中 利奈' %>
+      <div class="color-yellow list">
+          <%= link_to("#{user.name}", "/users/#{user.id}", {class: "name-link"}) %>
+      </div>
+    <% elsif user.name == '石山 裕也' %>
+      <div class="color-yellow list">
+          <%= link_to("#{user.name}", "/users/#{user.id}", {class: "name-link"}) %>
+      </div>
+    <% end %>
+  <% end %>
+<div>
 

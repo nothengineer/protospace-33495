@@ -23,7 +23,7 @@ class PrototypesController < ApplicationController
   def show
     #5人のメンバーはそれぞれの投稿は見れない。投稿しない社長・副社長に関しては5人のメンバー全員の投稿を見れる。
     @prototype = Prototype.find(params[:id])
-    if current_user.id == @prototype.user.id || current_user.position == '社長' ||  current_user.position == '代表取締役副社長'
+    if current_user.id == @prototype.user.id || current_user.position == '代表取締役' ||  current_user.position == '代表取締役副社長' || (current_user.position == 'マネージャー' && @prototype.user.name == '中山' || @prototype.user.name == '田中')
       @comment = Comment.new
       @comments = @prototype.comments.includes(:user)
     else
