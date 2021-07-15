@@ -26,6 +26,10 @@
       <div class="color-yellow list">
           <%= link_to("#{user.name}", "/users/#{user.id}", {class: "name-link"}) %>
       </div>
+    <% elsif user.name == '松崎 恵唯' %>
+      <div class="color-yellow list">
+          <%= link_to("#{user.name}", "/users/#{user.id}", {class: "name-link"}) %>
+      </div>
     <% end %>
   <% end %>
 <div>
