@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_05_18_135706) do
     t.text "text3", null: false
     t.text "text4", null: false
     t.text "text5", null: false
+    t.text "text6", null: false
     t.index ["user_id"], name: "index_prototypes_on_user_id"
   end
 
