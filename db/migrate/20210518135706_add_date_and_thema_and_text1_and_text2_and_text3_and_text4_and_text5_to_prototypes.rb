@@ -7,5 +7,6 @@ class AddDateAndThemaAndText1AndText2AndText3AndText4AndText5ToPrototypes < Acti
     add_column :prototypes, :text3, :text, null: false
     add_column :prototypes, :text4, :text, null: false
     add_column :prototypes, :text5, :text, null: false
+    add_column :prototypes, :text6, :text, null: false
   end
 end
