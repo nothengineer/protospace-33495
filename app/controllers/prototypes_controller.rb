@@ -56,6 +56,6 @@ class PrototypesController < ApplicationController
   private
 
   def prototype_params
-    params.require(:prototype).permit(:date, :thema, :text1,:text2,:text3,:text4,:text5).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:date, :thema, :text1,:text2,:text3,:text4,:text5,:text6).merge(user_id: current_user.id)
   end
 end

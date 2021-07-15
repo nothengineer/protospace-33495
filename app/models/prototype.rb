@@ -10,4 +10,5 @@ class Prototype < ApplicationRecord
   validates :text3, presence: true
   validates :text4, presence: true
   validates :text5, presence: true
+  validates :text6, presence: true
 end
