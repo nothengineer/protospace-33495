@@ -324,7 +324,6 @@ width: calc((100%) / 5);
 .footer {
   background-color: #999;
   padding: 10px 0;
-  position: absolute;
   width: 100vw;
 }
 .copyright {

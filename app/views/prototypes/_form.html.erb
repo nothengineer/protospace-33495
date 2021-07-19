@@ -1,5 +1,4 @@
 <%= form_with model:prototype, class: 'form', local: true do |f| %>
-<%# <%= form_with url: prototypes_path, class: 'form', local: true do |f| %> 
   <div class="field">
     <%= f.label :title, "投稿日" %><br />
     <%= f.date_field :date %>
@@ -51,12 +50,6 @@
     <%= f.label :concept, "本日の取り組み振り返り" %><br />
     <%= f.text_area :text6, :placeholder => "（例）本日は、動画編集と画像編集がメインだったが、効率化を図った上で早い時間で完成させ、他メンバーのタスクを協力することができた。", class: :form__text %>
   </div>
-
-  <%# <div class="field">
-    <%= f.label :image, "自分の画像" %>
-    <%# <br /> %>
-    <%# <%= f.file_field :image %>
-  <%# </div> %> 
 
   <div class="actions">
     <%= f.submit "保存する", class: :form__btn  %>
