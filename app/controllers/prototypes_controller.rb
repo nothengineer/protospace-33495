@@ -3,7 +3,7 @@ class PrototypesController < ApplicationController
   # only ログインしてないと入れないページを指定
 
   def index
-      @prototypes = Prototype.all.order(id: "DESC")
+      @prototypes = Prototype.all.order
   end
   
 
